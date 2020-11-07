@@ -1,4 +1,4 @@
-console.clear();
+;console.clear();
 if(document.querySelectorAll('div[id="payInfoDiv"]')[0] == null){
     var payInfoDiv = document.createElement("div");
     var payInfoTable = document.createElement("table");
@@ -190,4 +190,4 @@ function getHTML(url,callback){
 	xhr.open('GET',url);
 	xhr.responseType = 'document';
 	xhr.send();
-}
+};
