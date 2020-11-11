@@ -68,7 +68,6 @@ var onoffhandler = function onoffhandler (event) {
         //Turn on spying with ctrl + click
         event.preventDefault();
         event.stopPropagation();
-        window.clipboardData.clearData();
         document.removeEventListener('mouseover', mouseoverhighlight);
         document.removeEventListener('mousemove', mousemovehandler);
         document.removeEventListener('mouseout', mouseouthandler);
