@@ -15,13 +15,16 @@ var mousemovehandler = function mousemovehandler (event) {
 	if (event.ctrlKey){
             const el = document.createElement("textarea");
 	    el.value = pathOfElement(event.target);
+	    el.id = "PathOfHighlightedElement";
 	    el.setAttribute("readonly","");
 	    el.style.position = "absolute";
 	    el.style.left = "-9999px";
 	    document.body.appendChild(el);
-            el.select();
-	    document.execCommand("copy");
-	    document.body.removeChild(el);
+            waitForElement("textarea[id=\"PathOfHighlightedElement\"]").then(function(element){
+		    element.select();
+	    	    document.execCommand("copy");
+         	    document.body.removeChild(el);
+	    });
             var hObj = document.getElementsByClassName('highlight-wrap')[0];
             hObj.style.backgroundColor = '#ADD38C';
             hObj.style.border = '8px groove #F3BE88';
@@ -157,4 +160,29 @@ function pathOfElement(element){
         parentElementPath = pathOfElement(parent);
     }
     return parentElementPath + "/" + elementString;
+}
+function waitForElement(selector) {
+  return new Promise(function(resolve, reject) {
+    var element = document.querySelector(selector);
+
+    if(element) {
+      resolve(element);
+      return;
+    }
+
+    var observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        var nodes = Array.from(mutation.addedNodes);
+        for(var node of nodes) {
+          if(node.matches && node.matches(selector)) {
+            observer.disconnect();
+            resolve(node);
+            return;
+          }
+        };
+      });
+    });
+
+    observer.observe(document.documentElement, { childList: true, subtree: true });
+  });
 }
