@@ -15,18 +15,20 @@ if(iframenodes.length > 0){
 }
 var mousemovehandler = function mousemovehandler (event) {
 	if (event.ctrlKey){
-            const el = document.createElement("textarea");
-	    el.value = pathOfElement(event.target);
-	    el.id = "PathOfHighlightedElement";
-	    el.setAttribute("readonly","");
-	    el.style.position = "absolute";
-	    el.style.left = "-9999px";
-	    document.body.appendChild(el);
-            waitForElement("textarea[id=\"PathOfHighlightedElement\"]").then(function(element){
-		    element.select();
-	    	    document.execCommand("copy");
-         	    document.body.removeChild(element);
-	    });
+            navigator.clipboard.writeText(pathOfElement(event.target));
+		//const el = document.createElement("textarea");
+	    //el.value = pathOfElement(event.target);
+	    //el.id = "PathOfHighlightedElement";
+	    //el.setAttribute("readonly","");
+	    //el.style.position = "absolute";
+	    //el.style.left = "-9999px";
+	    //document.body.appendChild(el);
+            //waitForElement("textarea[id=\"PathOfHighlightedElement\"]").then(function(element){
+		//    element.select();
+	    	//    document.execCommand("copy");
+         	//    document.body.removeChild(element);
+	    //});
+            //document.body.removeChild(el);
             var hObj = document.getElementsByClassName('highlight-wrap')[0];
             hObj.style.backgroundColor = '#ADD38C';
             hObj.style.border = '8px groove #F3BE88';
