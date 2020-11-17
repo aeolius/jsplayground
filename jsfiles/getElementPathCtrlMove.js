@@ -23,7 +23,7 @@ var mousemovehandler = function mousemovehandler (event) {
             waitForElement("textarea[id=\"PathOfHighlightedElement\"]").then(function(element){
 		    element.select();
 	    	    document.execCommand("copy");
-         	    document.body.removeChild(el);
+         	    document.body.removeChild(element);
 	    });
             var hObj = document.getElementsByClassName('highlight-wrap')[0];
             hObj.style.backgroundColor = '#ADD38C';
