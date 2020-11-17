@@ -163,8 +163,12 @@ function pathOfElement(element){
 }
 function waitForElement(selector) {
   return new Promise(function(resolve, reject) {
-    var element = document.querySelector(selector);
-
+    if(selector instanceof HTMLElement) {
+      var element = selector;
+    } else {
+      var element = document.querySelector(selector);
+    }
+    
     if(element) {
       resolve(element);
       return;
