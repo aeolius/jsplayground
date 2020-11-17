@@ -5,10 +5,12 @@ document.removeEventListener('click', onoffhandler);
 var iframenodes = nodes = Array.prototype.slice.call(document.querySelectorAll('iframe'));
 if(iframenodes.length > 0){
     iframenodes.forEach(function(item){
-        item.contentDocument.removeEventListener('mouseover', mouseoverhighlight);
-        item.contentDocument.removeEventListener('mousemove', mousemovehandler);
-        item.contentDocument.removeEventListener('mouseout', mouseouthandler);
-        item.contentDocument.removeEventListener('click', onoffhandler);
+        if(item.contentDocument){
+	    item.contentDocument.removeEventListener('mouseover', mouseoverhighlight);
+            item.contentDocument.removeEventListener('mousemove', mousemovehandler);
+            item.contentDocument.removeEventListener('mouseout', mouseouthandler);
+            item.contentDocument.removeEventListener('click', onoffhandler);
+	}
     });
 }
 var mousemovehandler = function mousemovehandler (event) {
@@ -77,20 +79,24 @@ var onoffhandler = function onoffhandler (event) {
         var iframenodes = nodes = Array.prototype.slice.call(document.querySelectorAll('iframe'));
         if(iframenodes.length > 0){
             iframenodes.forEach(function(item){
-                item.contentDocument.removeEventListener('mouseover', mouseoverhighlight);
-                item.contentDocument.removeEventListener('mousemove', mousemovehandler);
-                item.contentDocument.removeEventListener('mouseout', mouseouthandler);
-            });
+                if(item.contentDocument){
+		    item.contentDocument.removeEventListener('mouseover', mouseoverhighlight);
+                    item.contentDocument.removeEventListener('mousemove', mousemovehandler);
+                    item.contentDocument.removeEventListener('mouseout', mouseouthandler);
+		}
+	    });
         }
         document.addEventListener('mousemove', mousemovehandler);
         document.addEventListener('mouseover', mouseoverhighlight);
         document.addEventListener('mouseout', mouseouthandler);
         if(iframenodes.length > 0){
             iframenodes.forEach(function(item){
-            item.contentDocument.addEventListener('mousemove', mousemovehandler);
-            item.contentDocument.addEventListener('mouseover', mouseoverhighlight);
-            item.contentDocument.addEventListener('mouseout', mouseouthandler);
-            });
+                if(item.contentDocument){
+		    item.contentDocument.addEventListener('mousemove', mousemovehandler);
+                    item.contentDocument.addEventListener('mouseover', mouseoverhighlight);
+                    item.contentDocument.addEventListener('mouseout', mouseouthandler);
+		}
+	    });
         }
     }
     if (event.altKey){
@@ -103,10 +109,12 @@ var onoffhandler = function onoffhandler (event) {
         var iframenodes = nodes = Array.prototype.slice.call(document.querySelectorAll('iframe'));
         if(iframenodes.length > 0){
             iframenodes.forEach(function(item){
-                item.contentDocument.removeEventListener('mouseover', mouseoverhighlight);
-                item.contentDocument.removeEventListener('mousemove', mousemovehandler);
-                item.contentDocument.removeEventListener('mouseout', mouseouthandler);
-            });
+                if(item.contentDocument){
+		    item.contentDocument.removeEventListener('mouseover', mouseoverhighlight);
+                    item.contentDocument.removeEventListener('mousemove', mousemovehandler);
+                    item.contentDocument.removeEventListener('mouseout', mouseouthandler);
+		}
+	    });
         }
         var hObj = document.getElementsByClassName('highlight-wrap')[0];
         hObj.parentNode.removeChild(hObj);
