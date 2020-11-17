@@ -42,19 +42,19 @@ var mouseoverhighlight = function mouseoverhighlight(event) {
     if(document.getElementsByClassName('highlight-wrap').length > 0) {
         var rect = event.target.getBoundingClientRect();
         var hObj = document.getElementsByClassName('highlight-wrap')[0];
-        hObj.style.top=(rect.top-10-parentRect.top)+"px";
+        hObj.style.top=(parentRect.top+rect.top-10)+"px";
         hObj.style.width=rect.width+20+"px";
         hObj.style.height=rect.height+20+"px";
-        hObj.style.left=(rect.left-10-parentRect.left)+"px";
+        hObj.style.left=(parentRect.left+rect.left-10)+"px";
     }else{
         var rect = event.target.getBoundingClientRect();
         var hObj = document.createElement("div");
         hObj.className = 'highlight-wrap';
-        hObj.style.position='absolute';
-        hObj.style.top=(rect.top-10-parentRect.top)+"px";
+        hObj.style.position='fixed';
+        hObj.style.top=(parentRect.top+rect.top-10)+"px";
         hObj.style.width=rect.width+20+"px";
         hObj.style.height=rect.height+20+"px";
-        hObj.style.left=(rect.left-10-parentRect.left)+"px";
+        hObj.style.left=(parentRect.left+rect.left-10)+"px";
         hObj.style.backgroundColor = '#F3BE88';
         hObj.style.border = '8px groove #ADD38C';
         hObj.style.opacity='0.4';
