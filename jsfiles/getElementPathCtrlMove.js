@@ -193,7 +193,7 @@ function waitForElement(selector) {
             resolve(node);
             return;
           }
-        };
+        }
       });
     });
 
